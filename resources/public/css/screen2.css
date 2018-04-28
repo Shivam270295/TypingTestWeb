@@ -1,0 +1,116 @@
+html,
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+}
+.navbar {
+  margin-bottom: 10px;
+  border-radius: 0px;
+}
+.navbar-brand {
+  float: none;
+}
+.navbar-nav .nav-item {
+  float: none;
+}
+.navbar-divider,
+.navbar-nav .nav-item+.nav-item,
+.navbar-nav .nav-link + .nav-link {
+  margin-left: 0;
+}
+@media (min-width: 34em) {
+  .navbar-brand {
+    float: left;
+  }
+  .navbar-nav .nav-item {
+    float: left;
+  }
+  .navbar-divider,
+  .navbar-nav .nav-item+.nav-item,
+  .navbar-nav .nav-link + .nav-link {
+    margin-left: 1rem;
+  }
+}
+
+textarea, #testPara {
+  width: 100%;
+  overflow: auto;
+  resize: none;
+  font-size: 18px;
+  color: #424242;
+  background: #fefefe;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #56b300;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 8px;
+}
+
+#testPara{
+	height: 200px;
+	overflow-y: scroll;
+}
+
+#inputPara{
+	max-height: 200px;
+}
+
+#timer{
+	font-size: 32px;
+	margin-left: auto;
+	margin-right:  auto;
+}
+
+#paraTitle{
+  min-height: 50px;
+}
+
+#paraText{
+  min-height: 250px;
+}
+
+.alertMessage{
+  width: 60%;
+  font-size: 14px;
+  text-align: center;
+  border: solid;
+  border-width: 1px;
+  border-color: #ffc281;
+  border-radius: 40px;
+  background: #fff3e7;
+  padding: 8px;
+  margin: 4px auto 20px auto;
+}
+
+
+button{
+  background: #007BFF;
+  outline: : none;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 12px 5px 12px;
+  min-width: 72px;
+  min-height: 40px;
+  color: #fff;
+}
+
+button:hover{
+  background: #1a88ff;
+}
+
+#btnSubmit{
+  float: right;
+}
+
+ul.paras{
+  list-style-type: none;
+}
+
+.paras li{
+  margin: 10px;
+  border: solid;
+  border-width: thin;
+  padding: 8px;
+  border-radius: 2px;
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<ul class="paras">
+    {% for para in paras %}
+    <li>
+      <h4><a href="/home/{{para._id}}">{{para.title}}</a></h4>
+      {{para.text}}
+    </li>
+    {% endfor %}
+  </ul>
+ </div>
+
+{% endblock %}

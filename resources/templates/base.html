@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to lum-app</title>
+
+    <!-- styles -->
+    {% style "/assets/bootstrap/css/bootstrap.min.css" %}
+    {% style "/assets/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" %}
+
+    {% style "/css/screen2.css" %}
+  </head>
+  <body>
+      <!-- navbar -->
+      <nav class="navbar navbar-dark bg-primary navbar-expand-md" role="navigation">
+          <button class="navbar-toggler hidden-sm-up"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapsing-navbar">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="/">Typing-Test-Web</a>
+          <div class="collapse navbar-collapse" id="collapsing-navbar">
+              <ul class="nav navbar-nav">
+                  <li class="nav-item">
+                      <a href="/"
+                         class="nav-link{% ifequal page "home.html" %} active{%endifequal%}">
+                      Home
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/addPara"
+                         class="nav-link{% ifequal page "addPara.html" %} active{%endifequal%}">
+                      Add Paragraph
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/allParas"
+                         class="nav-link{% ifequal page "allPara.html" %} active{%endifequal%}">
+                      See All
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/about"
+                         class="nav-link{% ifequal page "about.html" %} active{%endifequal%}">
+                      About
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- scripts -->
+    {% script "/assets/jquery/jquery.min.js" %}
+    {% script "/assets/font-awesome/svg-with-js/js/fontawesome.min.js" %}
+    {% script "/assets/tether/dist/js/tether.min.js" %}
+    {% script "/assets/bootstrap/js/bootstrap.min.js" %}
+	{% script "/js/main.js" %}
+    
+    {% block page-scripts %}
+    {% endblock %}
+  </body>
+</html>

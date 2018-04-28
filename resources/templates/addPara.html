@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <div class="row"> -->
+  <!-- <div class="content"> -->
+    <!-- <h2><p class="title">Add a new paragraph:</p></h2>
+    <textarea id="paraTitle" placeholder="Title"></textarea>
+    <textarea id="paraText" placeholder="Paragraph"></textarea>
+    <button onClick="printString()" id="btnSubmit">Submit</button> -->
+  <!-- </div> -->
+<!-- </div> -->
+{%if message %}
+<div class="alertMessage">{{message}}</div>
+{% endif %}
+
+<form action="/addNewPara" method="POST">
+  {% csrf-field %}
+  <textarea id="paraTitle" name="title" placeholder="Title" required="true"></textarea>
+  <textarea id="paraText" name="text" placeholder="Paragraph" required="true"></textarea>
+  <button type="submit" id="btnSubmit">Submit</button>
+  <!-- <input id="id" name="id" placeholder="screen name" type="text" />
+  <input id="pass" name="pass" placeholder="password" type="password" />
+  <input type="submit" value="login" /> -->
+</form>
+
+{% endblock %}

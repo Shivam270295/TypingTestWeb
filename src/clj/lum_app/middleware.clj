@@ -11,9 +11,16 @@
             [muuntaja.format.transit :as transit-format]
             [muuntaja.middleware :refer [wrap-format wrap-params]]
             [lum-app.config :refer [env]]
+            [lum-app.routes.home :refer [home-routes]]
             [ring.middleware.flash :refer [wrap-flash]]
             [immutant.web.middleware :refer [wrap-session]]
-            [ring.middleware.defaults :refer [site-defaults wrap-defaults]])
+            [ring.middleware.defaults :refer [site-defaults wrap-defaults]]
+            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [buddy.auth.accessrules :refer [wrap-access-rules]]
+            [buddy.auth.backends.session :refer [session-backend]]
+            [buddy.auth :refer [authenticated? throw-unauthorized]]
+            [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
+            [ring.util.response :refer [response]])
   (:import [javax.servlet ServletContext]
            [org.joda.time ReadableInstant]))
 
@@ -62,6 +69,18 @@
                      %
                      {:handlers {org.joda.time.DateTime joda-time-writer}}))]}}))
 
+; (def rules
+;   [{:uri "/about"
+;     :handler authenticated?}])
+
+; (defn on-error
+;   [request value]
+;   (log/error "Unauthorised page access")
+;   {:status 403
+;    :headers {}
+;    :body "Not authorized"})
+
+
 (defn wrap-formats [handler]
   (let [wrapped (-> handler wrap-params (wrap-format restful-format-options))]
     (fn [request]
@@ -69,7 +88,32 @@
       ;; since they're not compatible with this middleware
       ((if (:websocket? request) handler wrapped) request))))
 
+
+; (def authdata
+;   {:admin "secret"
+;    :test "secret"})
+
+; (defn my-authfn
+;   [req {:keys [username password]}]
+;   (log/error (str username " " password))
+;   (when-let [user-password (get authdata (keyword username))]
+;     (when (= password user-password)
+;       (keyword username))))
+
+; (defn my-handler
+;   [request]
+;   (if (:identity request)
+;     (response (format "Hello %s" (:identity request)))
+;     (response "Hello Anonymous")))
+
+; (def auth-backend
+;   (http-basic-backend {:realm "MyRealm"
+;                        :authfn my-authfn}))
+
+
+
 (defn wrap-base [handler]
+  (log/error handler)
   (-> ((:middleware defaults) handler)
       wrap-webjars
       wrap-flash
@@ -77,5 +121,4 @@
       (wrap-defaults
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)
-            (dissoc :session)))
-      wrap-internal-error))
+            (dissoc :session)))))

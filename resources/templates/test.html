@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Post getScore</h2>
+<form action="/getScore" method="POST">
+  {% csrf-field %}
+  <textarea name="testPara" placeholder="test text" required="true"></textarea>
+  <textarea name="inputPara" placeholder="input text" required="true"></textarea>
+  <button type="submit" id="btnSubmit">Submit</button>
+  <!-- <input id="id" name="id" placeholder="screen name" type="text" />
+  <input id="pass" name="pass" placeholder="password" type="password" />
+  <input type="submit" value="login" /> -->
+</form>
+
+{% endblock %}

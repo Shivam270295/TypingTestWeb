@@ -26,7 +26,9 @@
                  [ring/ring-defaults "0.3.1"]
                  [selmer "1.11.7"]
                  [com.novemberain/monger "3.1.0"]
-                 [ring/ring-anti-forgery "1.2.0"]]
+                 [ring/ring-anti-forgery "1.2.0"]
+                 [buddy/buddy-auth "2.1.0"]
+                 [org.slf4j/slf4j-nop "1.7.12"]]
 
   :min-lein-version "2.0.0"
   
@@ -36,7 +38,12 @@
   :target-path "target/%s/"
   :main ^:skip-aot lum-app.core
 
-  :plugins [[lein-immutant "2.1.0"]]
+  :plugins [[lein-immutant "2.1.0"] [lein-uberwar "0.1.0"]]
+
+  :uberwar {:handler lum-app.handler/app
+            :init lum-app.handler/init
+            :destroy lum-app.handler/destroy
+            :name "lum-app.war"}
 
   :profiles
   {:uberjar {:omit-source true
